@@ -47,6 +47,4 @@ class Database:
         return records
 
 
-d= Database()
-d.get_user_stat(000)
-d.get_all_users()
+
