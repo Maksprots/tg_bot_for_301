@@ -4,7 +4,8 @@ from telebot import types
 import database
 import table
 import timer
-
+# понмиаю что пустые except нехорошо,
+# к сожалению, писал в спешке
 bot = telebot.TeleBot(config.Config.BOT_TOKEN)
 base = database.Database()
 
@@ -67,7 +68,8 @@ def stoper(message):
     try:
         base.del_user(message.chat.id)
     except:
-        bot.send_message(message.chat.id, 'Вы не регестрировались')
+        bot.send_message(
+            message.chat.id, 'Вы не регестрировались')
 
 
 @bot.message_handler()
@@ -87,7 +89,10 @@ def main_handler(message):
                 text='Неправильный интервал поробуй еще раз'
             )
 
-        bot.send_message(message.chat.id, text='dfg', reply_markup=place)
+        bot.send_message(
+            message.chat.id,
+            text='',
+            reply_markup=place)
 
     else:
         try:
@@ -97,7 +102,10 @@ def main_handler(message):
 
             cmnds[message.text](message)
         except:
-            bot.send_message(message.chat.id, '', reply_markup=place)
+            bot.send_message(
+                message.chat.id,
+                '',
+                reply_markup=place)
 
 
 # запускаем поток с напомниалкой вызовом обьекта
